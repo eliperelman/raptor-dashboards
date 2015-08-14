@@ -1,0 +1,43 @@
+{
+  "title": "Home",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": false,
+  "hideControls": true,
+  "rows": [
+    {
+      "height": "610px",
+      "panels": [
+        {
+          "id": 3,
+          "span": 6,
+          "type": "dashlist",
+          "mode": "search",
+          "title": "Dashboards"
+        },
+        {
+          "id": 2,
+          "span": 6,
+          "type": "dashlist",
+          "mode": "starred",
+          "title": "Starred dashboards"
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "enable": false
+    }
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "templating": {
+    "list": []
+  },
+  "version": 5
+}

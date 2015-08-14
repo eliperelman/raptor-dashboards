@@ -1,0 +1,43 @@
+{
+  "name": "raptor-dashboards",
+  "private": true,
+  "version": "0.1.0",
+  "engines": {
+    "node": ">0.12"
+  },
+  "description": "Raptor docker starter",
+  "author": "Eli Perelman",
+  "license": "MIT",
+  "dependencies": {},
+  "config": {
+    "grafana": {
+      "version": "2.1.1",
+      "user": "admin",
+      "password": "admin",
+      "organization": "Mozilla",
+      "port": 3000
+    },
+    "influx": {
+      "version": "0.9",
+      "datasource": {
+        "name": "raptor",
+        "type": "influxdb",
+        "access": "proxy",
+        "basicAuth": false,
+        "user": "root",
+        "password": "root"
+      },
+      "ports": {
+        "ui": 8083,
+        "http": 8086
+      }
+    }
+  },
+  "scripts": {
+    "start": "node start",
+    "influx": "docker exec -it influx /bin/bash",
+    "grafana": "docker exec -it grafana /bin/bash",
+    "stop": "docker stop influx && docker stop grafana",
+    "remove": "npm stop && rm .influx_cid && rm .grafana_cid && docker rm influx && docker rm grafana"
+  }
+}

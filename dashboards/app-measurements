@@ -1,0 +1,140 @@
+/* global _ */
+
+// accessible variables in this scope
+var window, document, ARGS, $, jQuery, moment, kbn;
+
+var handler = function(callback) {
+
+  require([
+    'public/dashboards/src/base.js',
+    'public/dashboards/src/app.js',
+    'public/dashboards/src/memory.js',
+    'public/dashboards/src/device.js',
+    'public/dashboards/src/branch.js',
+    'public/dashboards/src/metric.js'
+  ], function(dashboard, $app, $memory, $device, $branch, getMetric) {
+
+    var $metric = getMetric('measure');
+
+    dashboard.title = "App Measurements";
+    dashboard.originalTitle = "App Measurements";
+    dashboard.templating.list = [$app, $metric, $memory, $device, $branch];
+    dashboard.rows.push({
+      "collapse": false,
+      "editable": true,
+      "height": "300px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "raptor",
+          "editable": true,
+          "error": false,
+          "fill": 0,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": 0,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "height": "300",
+          "id": 1,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "minSpan": 6,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 2,
+          "points": true,
+          "renderer": "flot",
+          "repeat": "app",
+          "scopedVars": {},
+          "seriesOverrides": [],
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$tag_metric",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value"
+                }
+              ],
+              "groupByTags": [
+                "metric"
+              ],
+              "measurement": "measure",
+              "query": "SELECT mean(value) FROM measure WHERE \"context\" =~ /$app/ AND \"device\" =~ /$device/ AND \"branch\" =~ /$branch/ AND \"memory\" =~ /$memory/ AND \"metric\" =~ /$metric/ AND $timeFilter GROUP BY time($interval), \"metric\", \"revisionId\"",
+              "rawQuery": true,
+              "tags": [
+                {
+                  "key": "context",
+                  "value": "/$app/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "device",
+                  "value": "/$device/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "branch",
+                  "value": "/$branch/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "memory",
+                  "value": "/$memory/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "metric",
+                  "value": "/$metric/"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$app",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "ms",
+            "short"
+          ]
+        }
+      ],
+      "title": "Apps"
+    });
+
+    callback(dashboard);
+  });
+
+
+};
+
+return handler;
