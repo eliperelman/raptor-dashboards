@@ -8,3 +8,5 @@ coverage
 .lock-wscript
 build/Release
 node_modules
+.grafana_cid
+.influx_cid
