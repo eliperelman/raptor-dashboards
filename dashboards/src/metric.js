@@ -11,7 +11,7 @@ define(function() {
       "multiFormat": "regex values",
       "name": "metric",
       "options": [],
-      "query": "SHOW TAG VALUES FROM \"" + type + "\" WITH KEY = \"metric\"",
+      "query": 'SHOW TAG VALUES FROM "' + type + '" WITH KEY = "metric"',
       "refresh": true,
       "refresh_on_load": true,
       "regex": "",

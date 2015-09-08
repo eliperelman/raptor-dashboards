@@ -10,7 +10,7 @@ define(function() {
     "multiFormat": "glob",
     "name": "test",
     "options": [],
-    "query": " SHOW TAG VALUES FROM /$metric/ WITH KEY = \"branch\"",
+    "query": " SHOW TAG VALUES FROM /$metric/ WITH KEY = \"test\"",
     "refresh": true,
     "refresh_on_load": true,
     "type": "query"

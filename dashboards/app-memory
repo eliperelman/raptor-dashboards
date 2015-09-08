@@ -30,7 +30,7 @@ var handler = function(callback) {
 
   require(requires, function(dashboard, annotations, $context, $memory, $device, $branch, $test, getMetric) {
 
-    var $metric = getMetric('measure');
+    var $metric = getMetric('memory');
 
     dashboard.title = "App Measurements";
     dashboard.originalTitle = "App Measurements";
@@ -91,15 +91,15 @@ var handler = function(callback) {
               "alias": "$tag_metric",
               "fields": [
                 {
-                  "func": "percentile",
+                  "func": "mean",
                   "name": "value"
                 }
               ],
               "groupByTags": [
                 "metric"
               ],
-              "measurement": "measure",
-              "query": 'SELECT percentile(value, 95) FROM measure WHERE ' + WHERE + ' AND $timeFilter GROUP BY time($interval), "metric"',
+              "measurement": "memory",
+              "query": 'SELECT mean(value) FROM memory WHERE ' + WHERE + ' AND $timeFilter GROUP BY time($interval), "metric"',
               "rawQuery": true,
               "tags": templateTags
             }

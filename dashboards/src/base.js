@@ -4,7 +4,7 @@ define(function() {
     "id": 0,
     "title": "",
     "originalTitle": "",
-    "tags": [],
+    "tags": ["default"],
     "style": "dark",
     "timezone": "browser",
     "editable": true,

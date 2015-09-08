@@ -5,17 +5,17 @@ define(function() {
     "current": {},
     "datasource": "raptor",
     "includeAll": true,
-    "label": "Applications",
+    "label": "Context",
     "multi": true,
     "multiFormat": "glob",
-    "name": "app",
+    "name": "context",
     "options": [
       {
         "text": "All",
         "value": "()"
       }
     ],
-    "query": "SHOW TAG VALUES FROM \"measure\" WITH KEY = \"context\"",
+    "query": 'SHOW TAG VALUES FROM "measure" WITH KEY = "context"',
     "refresh": true,
     "refresh_on_load": true,
     "type": "query"

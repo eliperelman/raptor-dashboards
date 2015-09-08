@@ -11,14 +11,14 @@
   "dependencies": {},
   "config": {
     "grafana": {
-      "version": "2.1.1",
+      "version": "2.1.3",
       "user": "admin",
       "password": "admin",
       "organization": "Mozilla",
       "port": 3000
     },
     "influx": {
-      "version": "0.9",
+      "version": "latest",
       "datasource": {
         "name": "raptor",
         "type": "influxdb",
@@ -35,6 +35,7 @@
   },
   "scripts": {
     "start": "node start",
+    "flush": "docker exec -it influx /opt/influxdb/influx -execute 'drop database raptor; create database raptor'",
     "influx": "docker exec -it influx /bin/bash",
     "grafana": "docker exec -it grafana /bin/bash",
     "stop": "docker stop influx && docker stop grafana",

@@ -8,8 +8,8 @@ SCRIPTS="$CWD/scripts"
 
 # If we have the CID files, then the containers are created. Start them and exit
 if [ -e "$GRAFANA_CID" ] || [ -e "$INFLUX_CID" ]; then
-  docker start influx
   docker start grafana
+  docker start influx
   exit 1
 fi
 
